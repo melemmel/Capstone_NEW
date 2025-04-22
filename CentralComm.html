@@ -10,141 +10,381 @@
     <link rel="icon" href="logo.png" type="image/x-icon" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/7a6c6b42a6.js" crossorigin="anonymous"></script>
+    <style>
+        /* snapshot */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2050;
+        }
+
+        .modal.show {
+            display: flex !important;
+        }
+
+        .modal-dialog {
+            max-width: 500px;
+            margin: 1.75rem auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 9px rgba(0,0,0,.5);
+            padding: 0;
+        }
+
+        .modal-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .close {
+            color: white;
+            opacity: 1;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ddd;
+        }
+
+        /* Search bar styles */
+        .search-container {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+        
+    /* card styles */
+        .result-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #049948;
+        }
+
+        .result-card h6 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .result-item {
+            margin-top: 10px;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background-color: #049948;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background-color: #037f37;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 380px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .chatbot-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chatbot-header h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+        }
+
+        #close-chat {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        #close-chat:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: #cfd8dc;
+            border-radius: 3px;
+        }
+
+        .bot-message {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            max-width: 85%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .user-message {
+            background: #1a73e8;
+            color: white;
+            margin-left: auto;
+            border: none;
+        }
+
+        .chatbot-questions {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .faq-question {
+            background: white;
+            border: 2px solid #1a73e8;
+            color: #1a73e8;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-question:hover {
+            background: #1a73e8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26,115,232,0.2);
+        }
+
+        .faq-question:active {
+            transform: translateY(0);
+        }
+
+        .chatbot-footer {
+            padding: 15px 20px;
+            background: white;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-footer a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .chatbot-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .chat-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(26,115,232,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(26,115,232,0.4);
+        }
+
+        .chat-toggle i {
+            font-size: 24px;
+        }
+
+        /* Animation for messages */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        /* Status indicator */
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #4CAF50;
+            margin-top: 5px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 3px;
+            padding: 10px 15px;
+            background: #f1f3f4;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            width: fit-content;
+            display: none;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: #90a4ae;
+            border-radius: 50%;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
 </head>
 
-<style>
-    /* snapshot */
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 2050;
-    }
-
-    .modal.show {
-        display: flex !important;
-    }
-
-    .modal-dialog {
-        max-width: 500px;
-        margin: 1.75rem auto;
-    }
-
-    .modal-content {
-        position: relative;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 3px 9px rgba(0,0,0,.5);
-        padding: 0;
-    }
-
-    .modal-header {
-        background-color: #2c3e50;
-        color: white;
-        padding: 1rem;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .modal-title {
-        margin: 0;
-        font-size: 1.25rem;
-        font-weight: 600;
-    }
-
-    .modal-body {
-        padding: 1.5rem;
-    }
-
-    .close {
-        color: white;
-        opacity: 1;
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-    }
-
-    .close:hover {
-        color: #ddd;
-    }
-
-    /* Search bar styles */
-    .search-container {
-        margin-bottom: 1rem;
-    }
-
-    .form-control {
-        display: block;
-        width: 100%;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    }
-
-    .form-control:focus {
-        color: #495057;
-        background-color: #fff;
-        border-color: #80bdff;
-        outline: 0;
-        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-    }
-    
-/* card styles */
-    .result-card {
-        background: #f8f9fa;
-        border-radius: 8px;
-        padding: 15px;
-        margin-top: 15px;
-        border-left: 4px solid #049948;
-    }
-
-    .result-card h6 {
-        color: #2c3e50;
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-    }
-
-    .result-item {
-        margin-top: 10px;
-    }
-
-    .result-item p {
-        margin: 5px 0;
-        font-size: 1rem;
-    }
-
-    .search-btn {
-        background-color: #049948;
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .search-btn:hover {
-        background-color: #037f37;
-    }
-</style>
-
-    
 <body>
     <!-- Splash Screen -->
     <div class="splash-screen" id="splashScreen">
@@ -262,6 +502,130 @@
         </section>
     </div>
 
-    <script src="CentralComm.js"></script>
+    <!-- Chatbot Container -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <h3>City Hall Assistant</h3>
+            <button id="close-chat" aria-label="Close chat">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="bot-message">
+                👋 Welcome to Baguio City Hall's Virtual Assistant! How may I help you today?
+            </div>
+            <div class="typing-indicator" id="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="chatbot-questions">
+            <button class="faq-question" data-question="1">
+                📝 Letter Submission Requirements
+            </button>
+            <button class="faq-question" data-question="2">
+                📍 Office Location
+            </button>
+            <button class="faq-question" data-question="3">
+                📞 Alternative Contact Methods
+            </button>
+            <button class="faq-question" data-question="4">
+                ⏱️ Processing Time
+            </button>
+            <button class="faq-question" data-question="5">
+                📊 Status Updates & Delays
+            </button>
+        </div>
+        <div class="chatbot-footer">
+            <p>Need additional assistance?<br>
+            Email us at <a href="mailto:cmobaguio2600@gmail.com">cmobaguio2600@gmail.com</a></p>
+        </div>
+    </div>
+    
+    <!-- Chatbot Toggle Button -->
+    <button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script>
+        // FAQ Data with enhanced formatting
+        const faqData = {
+            1: {
+                question: "What are the requirements for submitting a letter?",
+                answer: "📋 Your letter must include:\n• Complete contact details\n• Valid return address\n• Contact number\n\nThis ensures we can reach you regarding your submission."
+            },
+            2: {
+                question: "Where is the location of your office?",
+                answer: "🏢 We are located at:\n2nd floor, City Mayor's Office\nBaguio City Hall\n\nLandmark: Main City Hall Building"
+            },
+            3: {
+                question: "If I'm unable to visit City Hall in person, is there another way I can reach you?",
+                answer: "📧 You can reach us through:\n• Email: receivingbaguio645@gmail.com\n• Phone: (074-442-3939)\n\nWe typically respond within 24 hours during business days."
+            },
+            4: {
+                question: "How long does it take to process my letter?",
+                answer: "⏳ Standard processing time:\n• 2-3 working days\n\nNote: Complex matters may require additional processing time."
+            },
+            5: {
+                question: "What should I do if my letter has no update/delayed?",
+                answer: "📬 If no update after 3-4 working days:\n\n1. Email us at:\n   • cmobaguio2600@gmail.com\n   • receivingbaguio645@gmail.com\n\n2. Visit the Admin Office for immediate assistance"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatContainer = document.getElementById('chatbot-container');
+            const closeChat = document.getElementById('close-chat');
+            const chatMessages = document.getElementById('chatbot-messages');
+            const typingIndicator = document.getElementById('typing-indicator');
+            
+            // Toggle chat window with animation
+            chatToggle.addEventListener('click', () => {
+                chatContainer.style.display = 'flex';
+                setTimeout(() => {
+                    chatContainer.classList.add('active');
+                }, 10);
+            });
+            
+            // Close chat window with animation
+            closeChat.addEventListener('click', () => {
+                chatContainer.classList.remove('active');
+                setTimeout(() => {
+                    chatContainer.style.display = 'none';
+                }, 300);
+            });
+            
+            // Handle FAQ questions with enhanced UX
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const questionId = button.getAttribute('data-question');
+                    const faq = faqData[questionId];
+                    
+                    // Add user question
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'bot-message user-message';
+                    questionDiv.textContent = faq.question;
+                    chatMessages.appendChild(questionDiv);
+                    
+                    // Show typing indicator
+                    typingIndicator.style.display = 'flex';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    
+                    // Add bot answer with delay
+                    setTimeout(() => {
+                        typingIndicator.style.display = 'none';
+                        
+                        const answerDiv = document.createElement('div');
+                        answerDiv.className = 'bot-message';
+                        answerDiv.style.whiteSpace = 'pre-line';
+                        answerDiv.textContent = faq.answer;
+                        chatMessages.appendChild(answerDiv);
+                        
+                        // Scroll to bottom
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1500);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
