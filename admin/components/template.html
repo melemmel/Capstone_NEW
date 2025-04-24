@@ -1274,9 +1274,10 @@
       // Function to generate control number based on date
       function generateControlNumber(date) {
         const d = new Date(date);
-        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const year = String(d.getFullYear()).slice(-2); // Get last 2 digits of year
         const day = String(d.getDate()).padStart(2, '0');
-        return `${month}-${day}`;
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        return `${year}${day}${month}-1/100`;
       }
 
       // Function to check and archive old entries
