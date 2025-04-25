@@ -27,7 +27,16 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css"
     />
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      /* Add custom styling for DataTables buttons */
+      .dt-buttons .btn {
+        margin-right: 8px;
+      }
+      .dt-buttons .btn:last-child {
+        margin-right: 0;
+      }
+    </style>
   </head>
   <body>
     <button class="menu-toggle" id="menuToggle">
@@ -39,13 +48,22 @@
         <!-- Sidebar -->
         <div class="col-md-3 col-lg-2 px-0 sidebar" id="sidebar">
           <div class="d-flex flex-column p-4">
-            <a
-              href="/"
-              class="d-flex align-items-center mb-4 me-md-auto text-white text-decoration-none"
-            >
-              <i class="bi bi-shield-lock me-3 icon-large"></i>
-              <span class="fs-4">CentralComm</span>
-            </a>
+            <div class="d-flex justify-content-center">
+              <a
+                href="/"
+                class="d-flex flex-column align-items-center text-white text-decoration-none"
+                aria-label="Go to CentralComm homepage"
+              >
+                <img
+                  src="../icons&images/logo.png"
+                  alt="CentralComm Logo"
+                  class="mb-1"
+                  style="width: 100px; height: 100px"
+                />
+                <span class="fs-4 mt-2">CentralComm</span>
+              </a>
+            </div>
+
             <hr class="border-light opacity-50" />
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
@@ -136,16 +154,24 @@
                 </div>
                 <div class="d-flex justify-content-end gap-2 mb-2 mb-md-0">
                   <!-- Create New Button -->
-                  <button type="button" class="btn btn-sm btn-outline-light" data-bs-toggle="modal" data-bs-target="#createEntryModal">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-light"
+                    data-bs-toggle="modal"
+                    data-bs-target="#createEntryModal"
+                  >
                     <i class="bi bi-plus-circle me-2"></i>Create New
                   </button>
-                
+
                   <!-- Archive All Button -->
-                  <button type="button" class="btn btn-sm btn-outline-light" id="archiveAllBtn">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-light"
+                    id="archiveAllBtn"
+                  >
                     <i class="bi bi-archive me-2"></i>Archive All
                   </button>
                 </div>
-                
               </div>
             </div>
 
@@ -168,7 +194,9 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <h1 class="h2 mb-1">Archived Entries</h1>
-                  <p class="mb-0 text-white-50">View archived entries by year</p>
+                  <p class="mb-0 text-white-50">
+                    View archived entries by year
+                  </p>
                 </div>
               </div>
             </div>
@@ -188,7 +216,9 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <h1 class="h2 mb-1">Documents Summary</h1>
-                  <p class="mb-0 text-white-50">View document statistics and analytics</p>
+                  <p class="mb-0 text-white-50">
+                    View document statistics and analytics
+                  </p>
                 </div>
               </div>
             </div>
@@ -198,7 +228,9 @@
               <div class="col-md-6 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h6 class="card-title text-primary mb-3">Yearly Statistics</h6>
+                    <h6 class="card-title text-primary mb-3">
+                      Yearly Statistics
+                    </h6>
                     <div class="table-responsive">
                       <table class="table table-sm">
                         <tbody>
@@ -233,7 +265,9 @@
               <div class="col-md-6 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
-                    <h6 class="card-title text-primary mb-3">Monthly Statistics</h6>
+                    <h6 class="card-title text-primary mb-3">
+                      Monthly Statistics
+                    </h6>
                     <div class="table-responsive">
                       <table class="table table-sm">
                         <tbody>
@@ -264,7 +298,9 @@
               <div class="col-12 mb-4">
                 <div class="card">
                   <div class="card-body">
-                    <h6 class="card-title text-primary mb-3">Monthly Letters Received</h6>
+                    <h6 class="card-title text-primary mb-3">
+                      Monthly Letters Received
+                    </h6>
                     <canvas id="monthlyLettersChart" height="300"></canvas>
                   </div>
                 </div>
@@ -357,17 +393,31 @@
                 <div class="card h-100">
                   <div class="card-body text-center">
                     <div class="mb-4">
-                      <img src="https://github.com/mdo.png" alt="Profile" class="rounded-circle" width="150" height="150">
+                      <img
+                        src="https://github.com/mdo.png"
+                        alt="Profile"
+                        class="rounded-circle"
+                        width="150"
+                        height="150"
+                      />
                       <div class="mt-3">
                         <h5 class="mb-1">Admin User</h5>
                         <p class="text-muted mb-0">Administrator</p>
                       </div>
                     </div>
                     <div class="d-grid gap-2">
-                      <button class="btn btn-outline-primary" onclick="document.getElementById('profileImageInput').click()">
+                      <button
+                        class="btn btn-outline-primary"
+                        onclick="document.getElementById('profileImageInput').click()"
+                      >
                         <i class="bi bi-camera me-2"></i>Change Photo
                       </button>
-                      <input type="file" id="profileImageInput" class="d-none" accept="image/*">
+                      <input
+                        type="file"
+                        id="profileImageInput"
+                        class="d-none"
+                        accept="image/*"
+                      />
                     </div>
                   </div>
                 </div>
@@ -381,36 +431,77 @@
                     <form id="profileForm">
                       <div class="row mb-3">
                         <div class="col-md-6">
-                          <label for="firstName" class="form-label">First Name</label>
-                          <input type="text" class="form-control" id="firstName" value="Admin">
+                          <label for="firstName" class="form-label"
+                            >First Name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstName"
+                            value="Admin"
+                          />
                         </div>
                         <div class="col-md-6">
-                          <label for="lastName" class="form-label">Last Name</label>
-                          <input type="text" class="form-control" id="lastName" value="User">
+                          <label for="lastName" class="form-label"
+                            >Last Name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="lastName"
+                            value="User"
+                          />
                         </div>
                       </div>
                       <div class="mb-3">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" class="form-control" id="email" value="admin@example.com">
+                        <label for="email" class="form-label"
+                          >Email Address</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          value="admin@example.com"
+                        />
                       </div>
                       <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" value="+1 234 567 8900">
+                        <label for="phone" class="form-label"
+                          >Phone Number</label
+                        >
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="phone"
+                          value="+1 234 567 8900"
+                        />
                       </div>
                       <div class="mb-3">
-                        <label for="department" class="form-label">Department</label>
+                        <label for="department" class="form-label"
+                          >Department</label
+                        >
                         <select class="form-select" id="department">
-                          <option value="Administration" selected>Administration</option>
+                          <option value="Administration" selected>
+                            Administration
+                          </option>
                           <option value="IT">IT Department</option>
                           <option value="HR">Human Resources</option>
                           <option value="Finance">Finance</option>
                         </select>
                       </div>
                       <div class="mb-3">
-                        <label for="position" class="form-label">Position</label>
-                        <input type="text" class="form-control" id="position" value="System Administrator">
+                        <label for="position" class="form-label"
+                          >Position</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="position"
+                          value="System Administrator"
+                        />
                       </div>
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="submit" class="btn btn-primary">
+                        Save Changes
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -421,18 +512,41 @@
                     <h5 class="card-title mb-4">Change Password</h5>
                     <form id="passwordForm">
                       <div class="mb-3">
-                        <label for="currentPassword" class="form-label">Current Password</label>
-                        <input type="password" class="form-control" id="currentPassword" required>
+                        <label for="currentPassword" class="form-label"
+                          >Current Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="currentPassword"
+                          required
+                        />
                       </div>
                       <div class="mb-3">
-                        <label for="newPassword" class="form-label">New Password</label>
-                        <input type="password" class="form-control" id="newPassword" required>
+                        <label for="newPassword" class="form-label"
+                          >New Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="newPassword"
+                          required
+                        />
                       </div>
                       <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" required>
+                        <label for="confirmPassword" class="form-label"
+                          >Confirm New Password</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="confirmPassword"
+                          required
+                        />
                       </div>
-                      <button type="submit" class="btn btn-primary">Update Password</button>
+                      <button type="submit" class="btn btn-primary">
+                        Update Password
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -444,12 +558,25 @@
     </div>
 
     <!-- Create Entry Modal -->
-    <div class="modal fade" id="createEntryModal" tabindex="-1" aria-labelledby="createEntryModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="createEntryModal"
+      tabindex="-1"
+      aria-labelledby="createEntryModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header card-header bg-white">
-            <h5 class="modal-title" id="createEntryModalLabel">Create New Entry</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="createEntryModalLabel">
+              Create New Entry
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="createEntryForm">
@@ -466,40 +593,70 @@
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label for="controlNumber" class="form-label">Control Number</label>
-                  <input type="text" class="form-control" id="controlNumber" readonly>
+                  <label for="controlNumber" class="form-label"
+                    >Control Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="controlNumber"
+                    readonly
+                  />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <label for="dateReceived" class="form-label">Date Received</label>
-                  <input type="date" class="form-control" id="dateReceived" required>
+                  <label for="dateReceived" class="form-label"
+                    >Date Received</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="dateReceived"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
-                  <label for="timeReceived" class="form-label">Time Received</label>
-                  <input type="time" class="form-control" id="timeReceived" required>
+                  <label for="timeReceived" class="form-label"
+                    >Time Received</label
+                  >
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="timeReceived"
+                    required
+                  />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
                   <label for="from" class="form-label">From</label>
-                  <input type="text" class="form-control" id="from" required>
+                  <input type="text" class="form-control" id="from" required />
                 </div>
                 <div class="col-md-6">
                   <label for="office" class="form-label">Office</label>
-                  <input type="text" class="form-control" id="office" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="office"
+                    required
+                  />
                 </div>
               </div>
               <div class="mb-3">
                 <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject" required>
+                <input type="text" class="form-control" id="subject" required />
               </div>
               <div class="mb-3">
                 <label for="endorsedTo" class="form-label">Endorsed To</label>
                 <select class="form-select" id="endorsedTo" required>
                   <option value="">Select Office</option>
-                  <option value="Vice Mayor's Office">Vice Mayor's Office</option>
-                  <option value="Sangguniang Panlungsod">Sangguniang Panlungsod</option>
+                  <option value="Vice Mayor's Office">
+                    Vice Mayor's Office
+                  </option>
+                  <option value="Sangguniang Panlungsod">
+                    Sangguniang Panlungsod
+                  </option>
                   <option value="CAO">CAO</option>
                   <option value="CASSO">CASSO</option>
                   <option value="CADMO">CADMO</option>
@@ -520,7 +677,9 @@
                   <option value="COA">COA</option>
                   <option value="MTCC">MTCC</option>
                   <option value="RTCC">RTCC</option>
-                  <option value="Prosecutor's Office">Prosecutor's Office</option>
+                  <option value="Prosecutor's Office">
+                    Prosecutor's Office
+                  </option>
                   <option value="PESO">PESO</option>
                   <option value="PIO">PIO</option>
                   <option value="PLD">PLD</option>
@@ -537,8 +696,15 @@
               </div>
               <div class="mb-3">
                 <label for="fileUpload" class="form-label">File Upload</label>
-                <input type="file" class="form-control" id="fileUpload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                <div class="form-text">Accepted formats: PDF, DOC, DOCX, JPG, JPEG, PNG</div>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="fileUpload"
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                />
+                <div class="form-text">
+                  Accepted formats: PDF, DOC, DOCX, JPG, JPEG, PNG
+                </div>
               </div>
               <div class="mb-3">
                 <label for="remarks" class="form-label">Remarks</label>
@@ -557,20 +723,39 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="saveEntry">Save Entry</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveEntry">
+              Save Entry
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Edit Entry Modal -->
-    <div class="modal fade" id="editEntryModal" tabindex="-1" aria-labelledby="editEntryModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="editEntryModal"
+      tabindex="-1"
+      aria-labelledby="editEntryModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header card-header bg-white">
             <h5 class="modal-title" id="editEntryModalLabel">Edit Entry</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="editEntryForm">
@@ -587,40 +772,82 @@
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label for="editControlNumber" class="form-label">Control Number</label>
-                  <input type="text" class="form-control" id="editControlNumber" required>
+                  <label for="editControlNumber" class="form-label"
+                    >Control Number</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editControlNumber"
+                    required
+                  />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <label for="editDateReceived" class="form-label">Date Received</label>
-                  <input type="date" class="form-control" id="editDateReceived" required>
+                  <label for="editDateReceived" class="form-label"
+                    >Date Received</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="editDateReceived"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
-                  <label for="editTimeReceived" class="form-label">Time Received</label>
-                  <input type="time" class="form-control" id="editTimeReceived" required>
+                  <label for="editTimeReceived" class="form-label"
+                    >Time Received</label
+                  >
+                  <input
+                    type="time"
+                    class="form-control"
+                    id="editTimeReceived"
+                    required
+                  />
                 </div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
                   <label for="editFrom" class="form-label">From</label>
-                  <input type="text" class="form-control" id="editFrom" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editFrom"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
                   <label for="editOffice" class="form-label">Office</label>
-                  <input type="text" class="form-control" id="editOffice" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="editOffice"
+                    required
+                  />
                 </div>
               </div>
               <div class="mb-3">
                 <label for="editSubject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="editSubject" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editSubject"
+                  required
+                />
               </div>
               <div class="mb-3">
-                <label for="editEndorsedTo" class="form-label">Endorsed To</label>
+                <label for="editEndorsedTo" class="form-label"
+                  >Endorsed To</label
+                >
                 <select class="form-select" id="editEndorsedTo" required>
                   <option value="">Select Office</option>
-                  <option value="Vice Mayor's Office">Vice Mayor's Office</option>
-                  <option value="Sangguniang Panlungsod">Sangguniang Panlungsod</option>
+                  <option value="Vice Mayor's Office">
+                    Vice Mayor's Office
+                  </option>
+                  <option value="Sangguniang Panlungsod">
+                    Sangguniang Panlungsod
+                  </option>
                   <option value="CAO">CAO</option>
                   <option value="CASSO">CASSO</option>
                   <option value="CADMO">CADMO</option>
@@ -641,7 +868,9 @@
                   <option value="COA">COA</option>
                   <option value="MTCC">MTCC</option>
                   <option value="RTCC">RTCC</option>
-                  <option value="Prosecutor's Office">Prosecutor's Office</option>
+                  <option value="Prosecutor's Office">
+                    Prosecutor's Office
+                  </option>
                   <option value="PESO">PESO</option>
                   <option value="PIO">PIO</option>
                   <option value="PLD">PLD</option>
@@ -657,13 +886,26 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label for="editFileUpload" class="form-label">File Upload</label>
-                <input type="file" class="form-control" id="editFileUpload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                <div class="form-text">Accepted formats: PDF, DOC, DOCX, JPG, JPEG, PNG</div>
+                <label for="editFileUpload" class="form-label"
+                  >File Upload</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="editFileUpload"
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                />
+                <div class="form-text">
+                  Accepted formats: PDF, DOC, DOCX, JPG, JPEG, PNG
+                </div>
               </div>
               <div class="mb-3">
                 <label for="editRemarks" class="form-label">Remarks</label>
-                <textarea class="form-control" id="editRemarks" rows="3"></textarea>
+                <textarea
+                  class="form-control"
+                  id="editRemarks"
+                  rows="3"
+                ></textarea>
               </div>
               <div class="mb-3">
                 <label for="editStatus" class="form-label">Status</label>
@@ -678,38 +920,78 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="updateEntry">Update Entry</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="updateEntry">
+              Update Entry
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- View Archived Entry Modal -->
-    <div class="modal fade" id="viewArchivedModal" tabindex="-1" aria-labelledby="viewArchivedModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="viewArchivedModal"
+      tabindex="-1"
+      aria-labelledby="viewArchivedModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header card-header bg-white">
-            <h5 class="modal-title" id="viewArchivedModalLabel">Archived Entry Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="viewArchivedModalLabel">
+              Archived Entry Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <!-- Entry details will be populated here -->
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- View Audit Log Modal -->
-    <div class="modal fade" id="viewAuditLogModal" tabindex="-1" aria-labelledby="viewAuditLogModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="viewAuditLogModal"
+      tabindex="-1"
+      aria-labelledby="viewAuditLogModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header card-header bg-white">
-            <h5 class="modal-title" id="viewAuditLogModalLabel">Audit Log Details</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="viewAuditLogModalLabel">
+              Audit Log Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <div class="row mb-3">
@@ -725,7 +1007,8 @@
                 <strong>Action:</strong> <span id="auditAction"></span>
               </div>
               <div class="col-md-6">
-                <strong>Control Number:</strong> <span id="auditControlNumber"></span>
+                <strong>Control Number:</strong>
+                <span id="auditControlNumber"></span>
               </div>
             </div>
             <div class="mb-3">
@@ -741,39 +1024,75 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Create User Modal -->
-    <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="createUserModal"
+      tabindex="-1"
+      aria-labelledby="createUserModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header card-header bg-white">
-            <h5 class="modal-title" id="createUserModalLabel">Create New User</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="createUserModalLabel">
+              Create New User
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
             <form id="createUserForm">
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <label for="newFirstName" class="form-label">First Name</label>
-                  <input type="text" class="form-control" id="newFirstName" required>
+                  <label for="newFirstName" class="form-label"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="newFirstName"
+                    required
+                  />
                 </div>
                 <div class="col-md-6">
                   <label for="newLastName" class="form-label">Last Name</label>
-                  <input type="text" class="form-control" id="newLastName" required>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="newLastName"
+                    required
+                  />
                 </div>
               </div>
               <div class="mb-3">
                 <label for="newEmail" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="newEmail" required>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="newEmail"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="newPhone" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="newPhone">
+                <input type="tel" class="form-control" id="newPhone" />
               </div>
               <div class="mb-3">
                 <label for="newDepartment" class="form-label">Department</label>
@@ -787,7 +1106,12 @@
               </div>
               <div class="mb-3">
                 <label for="newPosition" class="form-label">Position</label>
-                <input type="text" class="form-control" id="newPosition" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newPosition"
+                  required
+                />
               </div>
               <div class="mb-3">
                 <label for="newRole" class="form-label">Role</label>
@@ -800,17 +1124,37 @@
               </div>
               <div class="mb-3">
                 <label for="newPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="newPassword" required>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="newPassword"
+                  required
+                />
               </div>
               <div class="mb-3">
-                <label for="confirmNewPassword" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmNewPassword" required>
+                <label for="confirmNewPassword" class="form-label"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmNewPassword"
+                  required
+                />
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="saveUser">Create User</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveUser">
+              Create User
+            </button>
           </div>
         </div>
       </div>
@@ -819,7 +1163,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -851,7 +1195,7 @@
         storageBucket: "centralcomm-248a9.firebasestorage.app",
         messagingSenderId: "796912003621",
         appId: "1:796912003621:web:0d6fd82e43399871a9edcc",
-        measurementId: "G-CN0S9L5YV4"
+        measurementId: "G-CN0S9L5YV4",
       };
 
       // Initialize Firebase if not already initialized
@@ -860,14 +1204,14 @@
       }
 
       const database = firebase.database();
-      const entriesRef = database.ref('entries');
+      const entriesRef = database.ref("entries");
 
       // Function to generate control number based on date
       function generateControlNumber(date) {
         const d = new Date(date);
         const year = String(d.getFullYear()).slice(-2); // Get last 2 digits of year
-        const day = String(d.getDate()).padStart(2, '0');
-        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, "0");
+        const month = String(d.getMonth() + 1).padStart(2, "0");
         return `${year}${day}${month}-1/100`;
       }
 
@@ -875,103 +1219,131 @@
       function checkAndArchiveEntries() {
         // Show loading state
         Swal.fire({
-          title: 'Checking Entries',
-          text: 'Please wait while we check for entries to archive...',
+          title: "Checking Entries",
+          text: "Please wait while we check for entries to archive...",
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
-          }
+          },
         });
 
         const currentYear = new Date().getFullYear();
-        entriesRef.once('value', (snapshot) => {
-          const entries = snapshot.val();
-          if (entries) {
-            let archivedCount = 0;
-            let totalToArchive = 0;
+        entriesRef
+          .once("value", (snapshot) => {
+            const entries = snapshot.val();
+            if (entries) {
+              let archivedCount = 0;
+              let totalToArchive = 0;
 
-            // First count how many entries need to be archived
-            Object.entries(entries).forEach(([_, entry]) => {
-              const entryYear = new Date(entry.dateReceived).getFullYear();
-              if (currentYear === 2025 && entryYear < 2025 && entry.status !== 'Archived') {
-                totalToArchive++;
+              // First count how many entries need to be archived
+              Object.entries(entries).forEach(([_, entry]) => {
+                const entryYear = new Date(entry.dateReceived).getFullYear();
+                if (
+                  currentYear === 2025 &&
+                  entryYear < 2025 &&
+                  entry.status !== "Archived"
+                ) {
+                  totalToArchive++;
+                }
+              });
+
+              if (totalToArchive === 0) {
+                Swal.close();
+                return;
               }
-            });
 
-            if (totalToArchive === 0) {
-              Swal.close();
-              return;
-            }
+              // Update loading message
+              Swal.update({
+                title: "Archiving Entries",
+                html: `Archiving ${totalToArchive} entries...`,
+              });
 
-            // Update loading message
-            Swal.update({
-              title: 'Archiving Entries',
-              html: `Archiving ${totalToArchive} entries...`
-            });
+              // Archive each entry
+              Object.entries(entries).forEach(([key, entry]) => {
+                const entryYear = new Date(entry.dateReceived).getFullYear();
+                if (
+                  currentYear === 2025 &&
+                  entryYear < 2025 &&
+                  entry.status !== "Archived"
+                ) {
+                  entriesRef
+                    .child(key)
+                    .update({
+                      status: "Archived",
+                      archivedAt: firebase.database.ServerValue.TIMESTAMP,
+                    })
+                    .then(() => {
+                      archivedCount++;
+                      logActivity(
+                        "archive",
+                        `Archived entry from ${entryYear}: ${entry.subject}`,
+                        entry.controlNumber
+                      );
 
-            // Archive each entry
-            Object.entries(entries).forEach(([key, entry]) => {
-              const entryYear = new Date(entry.dateReceived).getFullYear();
-              if (currentYear === 2025 && entryYear < 2025 && entry.status !== 'Archived') {
-                entriesRef.child(key).update({
-                  status: 'Archived',
-                  archivedAt: firebase.database.ServerValue.TIMESTAMP
-                })
-                .then(() => {
-                  archivedCount++;
-                  logActivity('archive', `Archived entry from ${entryYear}: ${entry.subject}`, entry.controlNumber);
-                  
-                  // Update progress
-                  if (archivedCount === totalToArchive) {
-                    Swal.fire({
-                      title: 'Success!',
-                      text: `Successfully archived ${archivedCount} entries!`,
-                      icon: 'success',
-                      confirmButtonColor: '#2e7d32'
+                      // Update progress
+                      if (archivedCount === totalToArchive) {
+                        Swal.fire({
+                          title: "Success!",
+                          text: `Successfully archived ${archivedCount} entries!`,
+                          icon: "success",
+                          confirmButtonColor: "#2e7d32",
+                        });
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Error archiving entry:", error);
+                      Swal.fire({
+                        title: "Error!",
+                        text: "Error archiving entries. Please try again.",
+                        icon: "error",
+                        confirmButtonColor: "#dc3545",
+                      });
                     });
-                  }
-                })
-                .catch((error) => {
-                  console.error('Error archiving entry:', error);
-                  Swal.fire({
-                    title: 'Error!',
-                    text: 'Error archiving entries. Please try again.',
-                    icon: 'error',
-                    confirmButtonColor: '#dc3545'
-                  });
-                });
-              }
-            });
-          }
-          Swal.close();
-        }).catch((error) => {
-          console.error('Error checking entries:', error);
-          Swal.close();
-          showErrorAlert('Error checking entries. Please try again.');
-        });
+                }
+              });
+            }
+            Swal.close();
+          })
+          .catch((error) => {
+            console.error("Error checking entries:", error);
+            Swal.close();
+            showErrorAlert("Error checking entries. Please try again.");
+          });
       }
 
       // Function to load entries into the table
       function loadEntries() {
         const currentYear = new Date().getFullYear();
-        entriesRef.on('value', (snapshot) => {
+        entriesRef.on("value", (snapshot) => {
           const entries = snapshot.val();
-          const accordionContainer = document.getElementById('monthlyStatsAccordion');
-          
+          const accordionContainer = document.getElementById(
+            "monthlyStatsAccordion"
+          );
+
           // Create months array
           const months = [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
           ];
 
           // Clear existing content
-          accordionContainer.innerHTML = '';
+          accordionContainer.innerHTML = "";
 
           // Create empty accordion items for all months first
-          months.forEach(month => {
+          months.forEach((month) => {
             const monthKey = `${month.toLowerCase()}${currentYear}`;
-            const accordionItem = document.createElement('div');
-            accordionItem.className = 'accordion-item border-0 mb-2';
+            const accordionItem = document.createElement("div");
+            accordionItem.className = "accordion-item border-0 mb-2";
             accordionItem.id = `accordion-${monthKey}`;
             accordionItem.innerHTML = `
               <h2 class="accordion-header">
@@ -1003,35 +1375,41 @@
           });
 
           // Then populate each month's data as it arrives
-          months.forEach(month => {
+          months.forEach((month) => {
             const monthKey = `${month.toLowerCase()}${currentYear}`;
-            
+
             // Get monthly data
-            database.ref(`monthlyData/${monthKey}`).once('value', (monthlySnapshot) => {
-              const monthlyData = monthlySnapshot.val() || {
-                total: 0,
-                complaints: 0,
-                proposals: 0,
-                invitations: 0,
-                requests: 0,
-                entries: []
-              };
+            database
+              .ref(`monthlyData/${monthKey}`)
+              .once("value", (monthlySnapshot) => {
+                const monthlyData = monthlySnapshot.val() || {
+                  total: 0,
+                  complaints: 0,
+                  proposals: 0,
+                  invitations: 0,
+                  requests: 0,
+                  entries: [],
+                };
 
-              // Get entries for this month
-              const monthEntries = monthlyData.entries.map(key => {
-                const entry = entries[key];
-                return entry ? { key, ...entry } : null;
-              }).filter(entry => entry && entry.status !== 'Archived');
+                // Get entries for this month
+                const monthEntries = monthlyData.entries
+                  .map((key) => {
+                    const entry = entries[key];
+                    return entry ? { key, ...entry } : null;
+                  })
+                  .filter((entry) => entry && entry.status !== "Archived");
 
-              // Sort entries by date
-              monthEntries.sort((a, b) => {
-                return new Date(b.dateReceived) - new Date(a.dateReceived);
-              });
+                // Sort entries by date
+                monthEntries.sort((a, b) => {
+                  return new Date(b.dateReceived) - new Date(a.dateReceived);
+                });
 
-              // Update the accordion item with the data
-              const accordionBody = document.querySelector(`#${monthKey} .accordion-body`);
-              if (accordionBody) {
-                accordionBody.innerHTML = `
+                // Update the accordion item with the data
+                const accordionBody = document.querySelector(
+                  `#${monthKey} .accordion-body`
+                );
+                if (accordionBody) {
+                  accordionBody.innerHTML = `
                   <!-- ${month} Statistics -->
                   <div class="row mb-4">
                     <div class="col-md-3">
@@ -1105,7 +1483,11 @@
                         </tr>
                       </thead>
                       <tbody>
-                        ${monthEntries.length > 0 ? monthEntries.map(entry => `
+                        ${
+                          monthEntries.length > 0
+                            ? monthEntries
+                                .map(
+                                  (entry) => `
                           <tr>
                             <td>${entry.controlNumber}</td>
                             <td>${entry.type}</td>
@@ -1115,40 +1497,55 @@
                             <td>${entry.office}</td>
                             <td>${entry.subject}</td>
                             <td>${entry.endorsedTo}</td>
-                            <td>${entry.remarks || ''}</td>
-                            <td><span class="badge bg-${getStatusColor(entry.status)}">${entry.status}</span></td>
+                            <td>${entry.remarks || ""}</td>
+                            <td><span class="badge bg-${getStatusColor(
+                              entry.status
+                            )}">${entry.status}</span></td>
                             <td>
-                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editEntryModal" onclick="editEntry('${entry.key}')">
+                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editEntryModal" onclick="editEntry('${
+                                entry.key
+                              }')">
                                 <i class="bi bi-pencil"></i>
                               </button>
-                              <button class="btn btn-sm btn-danger" onclick="deleteEntry('${entry.key}')">
+                              <button class="btn btn-sm btn-danger" onclick="deleteEntry('${
+                                entry.key
+                              }')">
                                 <i class="bi bi-trash"></i>
                               </button>
                             </td>
                           </tr>
-                        `).join('') : `
+                        `
+                                )
+                                .join("")
+                            : `
                           <tr>
                             <td colspan="11" class="text-center text-muted">No entries for ${month}</td>
                           </tr>
-                        `}
+                        `
+                        }
                       </tbody>
                     </table>
                   </div>
                 `;
-              }
-            });
+                }
+              });
           });
         });
       }
 
       // Function to get status color
       function getStatusColor(status) {
-        switch(status) {
-          case 'Pending': return 'warning';
-          case 'Processing': return 'info';
-          case 'Completed': return 'success';
-          case 'Archived': return 'secondary';
-          default: return 'primary';
+        switch (status) {
+          case "Pending":
+            return "warning";
+          case "Processing":
+            return "info";
+          case "Completed":
+            return "success";
+          case "Archived":
+            return "secondary";
+          default:
+            return "primary";
         }
       }
 
@@ -1159,13 +1556,13 @@
           if (isNaN(date.getTime())) {
             return dateString;
           }
-          return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
+          return date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
           });
         } catch (error) {
-          console.error('Error formatting date:', error);
+          console.error("Error formatting date:", error);
           return dateString;
         }
       }
@@ -1174,38 +1571,40 @@
       function logActivity(action, details, controlNumber) {
         const logData = {
           timestamp: firebase.database.ServerValue.TIMESTAMP,
-          user: 'Admin', // Replace with actual user when authentication is implemented
+          user: "Admin", // Replace with actual user when authentication is implemented
           action: action,
           details: details,
           controlNumber: controlNumber,
-          ipAddress: '127.0.0.1' // Replace with actual IP when available
+          ipAddress: "127.0.0.1", // Replace with actual IP when available
         };
 
-        database.ref('logs').push(logData)
+        database
+          .ref("logs")
+          .push(logData)
           .catch((error) => {
-            console.error('Error logging activity:', error);
+            console.error("Error logging activity:", error);
           });
       }
 
       // Function to show success alert
       function showSuccessAlert(message) {
         Swal.fire({
-          title: 'Success!',
+          title: "Success!",
           text: message,
-          icon: 'success',
-          confirmButtonColor: '#2e7d32',
+          icon: "success",
+          confirmButtonColor: "#2e7d32",
           timer: 2000,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
       }
 
       // Function to show error alert
       function showErrorAlert(message) {
         Swal.fire({
-          title: 'Error!',
+          title: "Error!",
           text: message,
-          icon: 'error',
-          confirmButtonColor: '#dc3545'
+          icon: "error",
+          confirmButtonColor: "#dc3545",
         });
       }
 
@@ -1214,93 +1613,106 @@
         return Swal.fire({
           title: title,
           text: text,
-          icon: 'warning',
+          icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: '#2e7d32',
-          cancelButtonColor: '#dc3545',
-          confirmButtonText: confirmButtonText
+          confirmButtonColor: "#2e7d32",
+          cancelButtonColor: "#dc3545",
+          confirmButtonText: confirmButtonText,
         });
       }
 
       // Update delete entry function
       function deleteEntry(key) {
-        showConfirmDialog('Are you sure?', 'You won\'t be able to revert this!', 'Yes, delete it!')
-          .then((result) => {
-            if (result.isConfirmed) {
-              entriesRef.child(key).once('value', (snapshot) => {
-                const entry = snapshot.val();
-                entriesRef.child(key).remove()
-                  .then(() => {
-                    // Log the deletion in history
-                    const logData = {
-                      timestamp: firebase.database.ServerValue.TIMESTAMP,
-                      user: 'Admin', // Replace with actual user when authentication is implemented
-                      action: 'delete',
-                      details: `Deleted entry: ${entry.subject}`,
-                      controlNumber: entry.controlNumber,
-                      ipAddress: '127.0.0.1', // Replace with actual IP when available
-                      userAgent: navigator.userAgent
-                    };
+        showConfirmDialog(
+          "Are you sure?",
+          "You won't be able to revert this!",
+          "Yes, delete it!"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            entriesRef.child(key).once("value", (snapshot) => {
+              const entry = snapshot.val();
+              entriesRef
+                .child(key)
+                .remove()
+                .then(() => {
+                  // Log the deletion in history
+                  const logData = {
+                    timestamp: firebase.database.ServerValue.TIMESTAMP,
+                    user: "Admin", // Replace with actual user when authentication is implemented
+                    action: "delete",
+                    details: `Deleted entry: ${entry.subject}`,
+                    controlNumber: entry.controlNumber,
+                    ipAddress: "127.0.0.1", // Replace with actual IP when available
+                    userAgent: navigator.userAgent,
+                  };
 
-                    database.ref('logs').push(logData)
-                      .then(() => {
-                        showSuccessAlert('Entry deleted successfully!');
-                      })
-                      .catch((error) => {
-                        console.error('Error logging deletion:', error);
-                        showErrorAlert('Entry deleted but failed to log the action.');
-                      });
-                  })
-                  .catch((error) => {
-                    console.error('Error deleting entry:', error);
-                    showErrorAlert('Error deleting entry. Please try again.');
-                  });
-              });
-            }
-          });
+                  database
+                    .ref("logs")
+                    .push(logData)
+                    .then(() => {
+                      showSuccessAlert("Entry deleted successfully!");
+                    })
+                    .catch((error) => {
+                      console.error("Error logging deletion:", error);
+                      showErrorAlert(
+                        "Entry deleted but failed to log the action."
+                      );
+                    });
+                })
+                .catch((error) => {
+                  console.error("Error deleting entry:", error);
+                  showErrorAlert("Error deleting entry. Please try again.");
+                });
+            });
+          }
+        });
       }
 
       // Function to archive all entries
       function archiveAllEntries() {
-        showConfirmDialog('Archive All Entries', 'Are you sure you want to archive all entries? This action cannot be undone.', 'Yes, archive all!')
-          .then((result) => {
-            if (result.isConfirmed) {
-              // Show initial loading state
-              Swal.fire({
-                title: 'Preparing to Archive',
-                text: 'Please wait while we prepare to archive entries...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                  Swal.showLoading();
-                }
-              });
+        showConfirmDialog(
+          "Archive All Entries",
+          "Are you sure you want to archive all entries? This action cannot be undone.",
+          "Yes, archive all!"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            // Show initial loading state
+            Swal.fire({
+              title: "Preparing to Archive",
+              text: "Please wait while we prepare to archive entries...",
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
 
-              entriesRef.once('value', (snapshot) => {
+            entriesRef
+              .once("value", (snapshot) => {
                 const entries = snapshot.val();
                 if (entries) {
                   let archivedCount = 0;
                   let totalToArchive = 0;
-                  
+
                   // First count how many entries need to be archived
                   Object.entries(entries).forEach(([_, entry]) => {
-                    if (entry.status !== 'Archived') {
+                    if (entry.status !== "Archived") {
                       totalToArchive++;
                     }
                   });
 
                   if (totalToArchive === 0) {
                     Swal.fire({
-                      title: 'No Entries to Archive',
-                      text: 'There are no entries available to archive.',
-                      icon: 'info',
-                      confirmButtonColor: '#2e7d32'
+                      title: "No Entries to Archive",
+                      text: "There are no entries available to archive.",
+                      icon: "info",
+                      confirmButtonColor: "#2e7d32",
                     });
                     return;
                   }
 
                   // Update loading message
                   Swal.update({
-                    title: 'Archiving Entries',
+                    title: "Archiving Entries",
                     html: `Archiving ${totalToArchive} entries...<br><br>
                           <div class="progress" style="height: 20px;">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" 
@@ -1309,309 +1721,383 @@
                                  id="archiveProgress">
                               0%
                             </div>
-                          </div>`
+                          </div>`,
                   });
 
                   // Archive each entry
                   Object.entries(entries).forEach(([key, entry]) => {
-                    if (entry.status !== 'Archived') {
-                      entriesRef.child(key).update({
-                        status: 'Archived',
-                        archivedAt: firebase.database.ServerValue.TIMESTAMP
-                      })
-                      .then(() => {
-                        archivedCount++;
-                        logActivity('archive', `Archived entry: ${entry.subject}`, entry.controlNumber);
-                        
-                        // Update progress bar
-                        const progress = Math.round((archivedCount / totalToArchive) * 100);
-                        document.getElementById('archiveProgress').style.width = `${progress}%`;
-                        document.getElementById('archiveProgress').textContent = `${progress}%`;
-                        
-                        // Update progress
-                        if (archivedCount === totalToArchive) {
+                    if (entry.status !== "Archived") {
+                      entriesRef
+                        .child(key)
+                        .update({
+                          status: "Archived",
+                          archivedAt: firebase.database.ServerValue.TIMESTAMP,
+                        })
+                        .then(() => {
+                          archivedCount++;
+                          logActivity(
+                            "archive",
+                            `Archived entry: ${entry.subject}`,
+                            entry.controlNumber
+                          );
+
+                          // Update progress bar
+                          const progress = Math.round(
+                            (archivedCount / totalToArchive) * 100
+                          );
+                          document.getElementById(
+                            "archiveProgress"
+                          ).style.width = `${progress}%`;
+                          document.getElementById(
+                            "archiveProgress"
+                          ).textContent = `${progress}%`;
+
+                          // Update progress
+                          if (archivedCount === totalToArchive) {
+                            Swal.fire({
+                              title: "Success!",
+                              text: `Successfully archived ${archivedCount} entries!`,
+                              icon: "success",
+                              confirmButtonColor: "#2e7d32",
+                            }).then(() => {
+                              loadEntries();
+                            });
+                          }
+                        })
+                        .catch((error) => {
+                          console.error("Error archiving entry:", error);
                           Swal.fire({
-                            title: 'Success!',
-                            text: `Successfully archived ${archivedCount} entries!`,
-                            icon: 'success',
-                            confirmButtonColor: '#2e7d32'
-                          }).then(() => {
-                            loadEntries();
+                            title: "Error!",
+                            text: "Error archiving entries. Please try again.",
+                            icon: "error",
+                            confirmButtonColor: "#dc3545",
                           });
-                        }
-                      })
-                      .catch((error) => {
-                        console.error('Error archiving entry:', error);
-                        Swal.fire({
-                          title: 'Error!',
-                          text: 'Error archiving entries. Please try again.',
-                          icon: 'error',
-                          confirmButtonColor: '#dc3545'
                         });
-                      });
                     }
                   });
                 } else {
                   Swal.fire({
-                    title: 'No Entries Found',
-                    text: 'There are no entries in the database.',
-                    icon: 'info',
-                    confirmButtonColor: '#2e7d32'
+                    title: "No Entries Found",
+                    text: "There are no entries in the database.",
+                    icon: "info",
+                    confirmButtonColor: "#2e7d32",
                   });
                 }
-              }).catch((error) => {
-                console.error('Error preparing to archive:', error);
+              })
+              .catch((error) => {
+                console.error("Error preparing to archive:", error);
                 Swal.fire({
-                  title: 'Error!',
-                  text: 'Error preparing to archive entries. Please try again.',
-                  icon: 'error',
-                  confirmButtonColor: '#dc3545'
+                  title: "Error!",
+                  text: "Error preparing to archive entries. Please try again.",
+                  icon: "error",
+                  confirmButtonColor: "#dc3545",
                 });
               });
-            }
-          });
+          }
+        });
       }
 
       // Update restore entry function
       function restoreEntry(key) {
-        showConfirmDialog('Restore Entry', 'Are you sure you want to restore this entry?', 'Yes, restore it!')
-          .then((result) => {
-            if (result.isConfirmed) {
-              entriesRef.child(key).update({
-                status: 'Pending',
-                restoredAt: firebase.database.ServerValue.TIMESTAMP
+        showConfirmDialog(
+          "Restore Entry",
+          "Are you sure you want to restore this entry?",
+          "Yes, restore it!"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            entriesRef
+              .child(key)
+              .update({
+                status: "Pending",
+                restoredAt: firebase.database.ServerValue.TIMESTAMP,
               })
               .then(() => {
-                logActivity('restore', `Restored archived entry: ${key}`, key);
-                showSuccessAlert('Entry restored successfully!');
+                logActivity("restore", `Restored archived entry: ${key}`, key);
+                showSuccessAlert("Entry restored successfully!");
                 loadArchivedEntries();
               })
               .catch((error) => {
-                console.error('Error restoring entry:', error);
-                showErrorAlert('Error restoring entry. Please try again.');
+                console.error("Error restoring entry:", error);
+                showErrorAlert("Error restoring entry. Please try again.");
               });
-            }
-          });
+          }
+        });
       }
 
       // Update create entry handler
-      document.getElementById('saveEntry').addEventListener('click', function() {
-        const formData = {
-          type: document.getElementById('letterType').value,
-          controlNumber: document.getElementById('controlNumber').value,
-          dateReceived: document.getElementById('dateReceived').value,
-          timeReceived: document.getElementById('timeReceived').value,
-          from: document.getElementById('from').value,
-          office: document.getElementById('office').value,
-          subject: document.getElementById('subject').value,
-          endorsedTo: document.getElementById('endorsedTo').value,
-          remarks: document.getElementById('remarks').value,
-          status: document.getElementById('status').value,
-          createdAt: firebase.database.ServerValue.TIMESTAMP
-        };
+      document
+        .getElementById("saveEntry")
+        .addEventListener("click", function () {
+          const formData = {
+            type: document.getElementById("letterType").value,
+            controlNumber: document.getElementById("controlNumber").value,
+            dateReceived: document.getElementById("dateReceived").value,
+            timeReceived: document.getElementById("timeReceived").value,
+            from: document.getElementById("from").value,
+            office: document.getElementById("office").value,
+            subject: document.getElementById("subject").value,
+            endorsedTo: document.getElementById("endorsedTo").value,
+            remarks: document.getElementById("remarks").value,
+            status: document.getElementById("status").value,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+          };
 
-        // Get the month and year for monthly data
-        const entryDate = new Date(formData.dateReceived);
-        const month = entryDate.toLocaleString('default', { month: 'long' }).toLowerCase();
-        const year = entryDate.getFullYear();
-        const monthKey = `${month}${year}`;
+          // Get the month and year for monthly data
+          const entryDate = new Date(formData.dateReceived);
+          const month = entryDate
+            .toLocaleString("default", { month: "long" })
+            .toLowerCase();
+          const year = entryDate.getFullYear();
+          const monthKey = `${month}${year}`;
 
-        // Save the entry
-        entriesRef.push(formData)
-          .then((ref) => {
-            // Save monthly data
-            const monthlyRef = database.ref(`monthlyData/${monthKey}`);
-            monthlyRef.once('value', (snapshot) => {
-              const monthlyData = snapshot.val() || {
-                total: 0,
-                complaints: 0,
-                proposals: 0,
-                invitations: 0,
-                requests: 0,
-                entries: []
-              };
+          // Save the entry
+          entriesRef
+            .push(formData)
+            .then((ref) => {
+              // Save monthly data
+              const monthlyRef = database.ref(`monthlyData/${monthKey}`);
+              monthlyRef.once("value", (snapshot) => {
+                const monthlyData = snapshot.val() || {
+                  total: 0,
+                  complaints: 0,
+                  proposals: 0,
+                  invitations: 0,
+                  requests: 0,
+                  entries: [],
+                };
 
-              // Update monthly statistics
-              monthlyData.total++;
-              monthlyData[formData.type.toLowerCase() + 's']++;
-              monthlyData.entries.push(ref.key);
+                // Update monthly statistics
+                monthlyData.total++;
+                monthlyData[formData.type.toLowerCase() + "s"]++;
+                monthlyData.entries.push(ref.key);
 
-              // Save updated monthly data
-              monthlyRef.set(monthlyData)
-                .then(() => {
-                  logActivity('create', `Created new entry: ${formData.subject}`, formData.controlNumber);
-                  
-                  document.getElementById('createEntryForm').reset();
-                  
-                  const now = new Date();
-                  const currentDate = now.toISOString().split('T')[0];
-                  const currentTime = now.toTimeString().slice(0, 5);
-                  document.getElementById('dateReceived').value = currentDate;
-                  document.getElementById('timeReceived').value = currentTime;
-                  document.getElementById('controlNumber').value = generateControlNumber(currentDate);
-                  
-                  showSuccessAlert('Entry created successfully!');
-                  const modal = bootstrap.Modal.getInstance(document.getElementById('createEntryModal'));
-                  modal.hide();
+                // Save updated monthly data
+                monthlyRef
+                  .set(monthlyData)
+                  .then(() => {
+                    logActivity(
+                      "create",
+                      `Created new entry: ${formData.subject}`,
+                      formData.controlNumber
+                    );
 
-                  loadEntries();
-                  setTimeout(() => {
-                    const accordionButton = document.querySelector(`button[data-bs-target="#${monthKey}"]`);
-                    if (accordionButton) {
-                      accordionButton.click();
-                    }
-                  }, 500);
-                })
-                .catch((error) => {
-                  console.error('Error saving monthly data:', error);
-                  showErrorAlert('Error saving monthly data. Please try again.');
-                });
+                    document.getElementById("createEntryForm").reset();
+
+                    const now = new Date();
+                    const currentDate = now.toISOString().split("T")[0];
+                    const currentTime = now.toTimeString().slice(0, 5);
+                    document.getElementById("dateReceived").value = currentDate;
+                    document.getElementById("timeReceived").value = currentTime;
+                    document.getElementById("controlNumber").value =
+                      generateControlNumber(currentDate);
+
+                    showSuccessAlert("Entry created successfully!");
+                    const modal = bootstrap.Modal.getInstance(
+                      document.getElementById("createEntryModal")
+                    );
+                    modal.hide();
+
+                    loadEntries();
+                    setTimeout(() => {
+                      const accordionButton = document.querySelector(
+                        `button[data-bs-target="#${monthKey}"]`
+                      );
+                      if (accordionButton) {
+                        accordionButton.click();
+                      }
+                    }, 500);
+                  })
+                  .catch((error) => {
+                    console.error("Error saving monthly data:", error);
+                    showErrorAlert(
+                      "Error saving monthly data. Please try again."
+                    );
+                  });
+              });
+            })
+            .catch((error) => {
+              console.error("Error creating entry:", error);
+              showErrorAlert("Error creating entry. Please try again.");
             });
-          })
-          .catch((error) => {
-            console.error('Error creating entry:', error);
-            showErrorAlert('Error creating entry. Please try again.');
-          });
-      });
+        });
 
       // Update edit entry handler
-      document.getElementById('updateEntry').addEventListener('click', function() {
-        const key = document.getElementById('editEntryForm').dataset.key;
-        const formData = {
-          type: document.getElementById('editType').value,
-          controlNumber: document.getElementById('editControlNumber').value,
-          dateReceived: document.getElementById('editDateReceived').value,
-          timeReceived: document.getElementById('editTimeReceived').value,
-          from: document.getElementById('editFrom').value,
-          office: document.getElementById('editOffice').value,
-          subject: document.getElementById('editSubject').value,
-          endorsedTo: document.getElementById('editEndorsedTo').value,
-          remarks: document.getElementById('editRemarks').value,
-          status: document.getElementById('editStatus').value,
-          updatedAt: firebase.database.ServerValue.TIMESTAMP
-        };
+      document
+        .getElementById("updateEntry")
+        .addEventListener("click", function () {
+          const key = document.getElementById("editEntryForm").dataset.key;
+          const formData = {
+            type: document.getElementById("editType").value,
+            controlNumber: document.getElementById("editControlNumber").value,
+            dateReceived: document.getElementById("editDateReceived").value,
+            timeReceived: document.getElementById("editTimeReceived").value,
+            from: document.getElementById("editFrom").value,
+            office: document.getElementById("editOffice").value,
+            subject: document.getElementById("editSubject").value,
+            endorsedTo: document.getElementById("editEndorsedTo").value,
+            remarks: document.getElementById("editRemarks").value,
+            status: document.getElementById("editStatus").value,
+            updatedAt: firebase.database.ServerValue.TIMESTAMP,
+          };
 
-        entriesRef.child(key).update(formData)
-          .then(() => {
-            logActivity('update', `Updated entry: ${formData.subject}`, formData.controlNumber);
-            
-            showSuccessAlert('Entry updated successfully!');
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editEntryModal'));
-            modal.hide();
+          entriesRef
+            .child(key)
+            .update(formData)
+            .then(() => {
+              logActivity(
+                "update",
+                `Updated entry: ${formData.subject}`,
+                formData.controlNumber
+              );
 
-            const entryDate = new Date(formData.dateReceived);
-            const monthKey = entryDate.toLocaleString('default', { month: 'long' }).toLowerCase() + entryDate.getFullYear();
-            loadEntries();
-            setTimeout(() => {
-              const accordionButton = document.querySelector(`button[data-bs-target="#${monthKey}"]`);
-              if (accordionButton) {
-                accordionButton.click();
-              }
-            }, 500);
-          })
-          .catch((error) => {
-            console.error('Error updating entry:', error);
-            showErrorAlert('Error updating entry. Please try again.');
-          });
-      });
+              showSuccessAlert("Entry updated successfully!");
+              const modal = bootstrap.Modal.getInstance(
+                document.getElementById("editEntryModal")
+              );
+              modal.hide();
+
+              const entryDate = new Date(formData.dateReceived);
+              const monthKey =
+                entryDate
+                  .toLocaleString("default", { month: "long" })
+                  .toLowerCase() + entryDate.getFullYear();
+              loadEntries();
+              setTimeout(() => {
+                const accordionButton = document.querySelector(
+                  `button[data-bs-target="#${monthKey}"]`
+                );
+                if (accordionButton) {
+                  accordionButton.click();
+                }
+              }, 500);
+            })
+            .catch((error) => {
+              console.error("Error updating entry:", error);
+              showErrorAlert("Error updating entry. Please try again.");
+            });
+        });
 
       // Update profile form submission
-      document.getElementById('profileForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const profileData = {
-          firstName: document.getElementById('firstName').value,
-          lastName: document.getElementById('lastName').value,
-          email: document.getElementById('email').value,
-          phone: document.getElementById('phone').value,
-          department: document.getElementById('department').value,
-          position: document.getElementById('position').value,
-          updatedAt: firebase.database.ServerValue.TIMESTAMP
-        };
+      document
+        .getElementById("profileForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const profileData = {
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            department: document.getElementById("department").value,
+            position: document.getElementById("position").value,
+            updatedAt: firebase.database.ServerValue.TIMESTAMP,
+          };
 
-        database.ref('users/admin').update(profileData)
-          .then(() => {
-            showSuccessAlert('Profile updated successfully!');
-            logActivity('profile_update', 'Updated profile information', 'admin');
-          })
-          .catch((error) => {
-            console.error('Error updating profile:', error);
-            showErrorAlert('Error updating profile. Please try again.');
-          });
-      });
+          database
+            .ref("users/admin")
+            .update(profileData)
+            .then(() => {
+              showSuccessAlert("Profile updated successfully!");
+              logActivity(
+                "profile_update",
+                "Updated profile information",
+                "admin"
+              );
+            })
+            .catch((error) => {
+              console.error("Error updating profile:", error);
+              showErrorAlert("Error updating profile. Please try again.");
+            });
+        });
 
       // Update password change form submission
-      document.getElementById('passwordForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const currentPassword = document.getElementById('currentPassword').value;
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+      document
+        .getElementById("passwordForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const currentPassword =
+            document.getElementById("currentPassword").value;
+          const newPassword = document.getElementById("newPassword").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
 
-        if (newPassword !== confirmPassword) {
-          showErrorAlert('New passwords do not match!');
-          return;
-        }
+          if (newPassword !== confirmPassword) {
+            showErrorAlert("New passwords do not match!");
+            return;
+          }
 
-        showSuccessAlert('Password updated successfully!');
-        logActivity('password_change', 'Changed password', 'admin');
-        document.getElementById('passwordForm').reset();
-      });
+          showSuccessAlert("Password updated successfully!");
+          logActivity("password_change", "Changed password", "admin");
+          document.getElementById("passwordForm").reset();
+        });
 
       // Update profile image upload
-      document.getElementById('profileImageInput').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-          showSuccessAlert('Profile image updated successfully!');
-          logActivity('profile_image', 'Updated profile image', 'admin');
-        }
-      });
+      document
+        .getElementById("profileImageInput")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            showSuccessAlert("Profile image updated successfully!");
+            logActivity("profile_image", "Updated profile image", "admin");
+          }
+        });
 
       // Edit entry function
       function editEntry(key) {
-        entriesRef.child(key).once('value', (snapshot) => {
+        entriesRef.child(key).once("value", (snapshot) => {
           const entry = snapshot.val();
           if (entry) {
-            document.getElementById('editType').value = entry.type;
-            document.getElementById('editControlNumber').value = entry.controlNumber;
-            document.getElementById('editDateReceived').value = entry.dateReceived;
-            document.getElementById('editTimeReceived').value = entry.timeReceived;
-            document.getElementById('editFrom').value = entry.from;
-            document.getElementById('editOffice').value = entry.office;
-            document.getElementById('editSubject').value = entry.subject;
-            document.getElementById('editEndorsedTo').value = entry.endorsedTo;
-            document.getElementById('editRemarks').value = entry.remarks || '';
-            document.getElementById('editStatus').value = entry.status;
+            document.getElementById("editType").value = entry.type;
+            document.getElementById("editControlNumber").value =
+              entry.controlNumber;
+            document.getElementById("editDateReceived").value =
+              entry.dateReceived;
+            document.getElementById("editTimeReceived").value =
+              entry.timeReceived;
+            document.getElementById("editFrom").value = entry.from;
+            document.getElementById("editOffice").value = entry.office;
+            document.getElementById("editSubject").value = entry.subject;
+            document.getElementById("editEndorsedTo").value = entry.endorsedTo;
+            document.getElementById("editRemarks").value = entry.remarks || "";
+            document.getElementById("editStatus").value = entry.status;
 
             // Store the key for updating
-            document.getElementById('editEntryForm').dataset.key = key;
+            document.getElementById("editEntryForm").dataset.key = key;
           }
         });
       }
 
       // Update control number when date changes in create form
-      document.getElementById('dateReceived').addEventListener('change', function() {
-        const controlNumber = generateControlNumber(this.value);
-        document.getElementById('controlNumber').value = controlNumber;
-      });
+      document
+        .getElementById("dateReceived")
+        .addEventListener("change", function () {
+          const controlNumber = generateControlNumber(this.value);
+          document.getElementById("controlNumber").value = controlNumber;
+        });
 
       // Update control number when date changes in edit form
-      document.getElementById('editDateReceived').addEventListener('change', function() {
-        const controlNumber = generateControlNumber(this.value);
-        document.getElementById('editControlNumber').value = controlNumber;
-      });
+      document
+        .getElementById("editDateReceived")
+        .addEventListener("change", function () {
+          const controlNumber = generateControlNumber(this.value);
+          document.getElementById("editControlNumber").value = controlNumber;
+        });
 
       // Set current time and generate control number when modal opens
-      document.getElementById('createEntryModal').addEventListener('show.bs.modal', function() {
-        const now = new Date();
-        const currentDate = now.toISOString().split('T')[0];
-        const currentTime = now.toTimeString().slice(0, 5);
-        
-        document.getElementById('dateReceived').value = currentDate;
-        document.getElementById('timeReceived').value = currentTime;
-        document.getElementById('controlNumber').value = generateControlNumber(currentDate);
-      });
+      document
+        .getElementById("createEntryModal")
+        .addEventListener("show.bs.modal", function () {
+          const now = new Date();
+          const currentDate = now.toISOString().split("T")[0];
+          const currentTime = now.toTimeString().slice(0, 5);
+
+          document.getElementById("dateReceived").value = currentDate;
+          document.getElementById("timeReceived").value = currentTime;
+          document.getElementById("controlNumber").value =
+            generateControlNumber(currentDate);
+        });
 
       // Load entries and check for archiving when page loads
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         checkAndArchiveEntries();
         loadEntries();
       });
@@ -1620,41 +2106,44 @@
       function loadArchivedEntries() {
         // Show loading state
         Swal.fire({
-          title: 'Loading Archived Entries',
-          text: 'Please wait...',
+          title: "Loading Archived Entries",
+          text: "Please wait...",
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
-          }
+          },
         });
 
-        entriesRef.once('value', (snapshot) => {
-          const entries = snapshot.val();
-          const archivedYearsContainer = document.getElementById('archivedYearsContainer');
-          archivedYearsContainer.innerHTML = '';
+        entriesRef
+          .once("value", (snapshot) => {
+            const entries = snapshot.val();
+            const archivedYearsContainer = document.getElementById(
+              "archivedYearsContainer"
+            );
+            archivedYearsContainer.innerHTML = "";
 
-          if (entries) {
-            // Group entries by year
-            const entriesByYear = {};
-            Object.entries(entries).forEach(([key, entry]) => {
-              if (entry.status === 'Archived') {
-                const year = new Date(entry.dateReceived).getFullYear();
-                if (!entriesByYear[year]) {
-                  entriesByYear[year] = [];
+            if (entries) {
+              // Group entries by year
+              const entriesByYear = {};
+              Object.entries(entries).forEach(([key, entry]) => {
+                if (entry.status === "Archived") {
+                  const year = new Date(entry.dateReceived).getFullYear();
+                  if (!entriesByYear[year]) {
+                    entriesByYear[year] = [];
+                  }
+                  entriesByYear[year].push({ key, ...entry });
                 }
-                entriesByYear[year].push({ key, ...entry });
-              }
-            });
+              });
 
-            // Sort years in descending order
-            const years = Object.keys(entriesByYear).sort((a, b) => b - a);
+              // Sort years in descending order
+              const years = Object.keys(entriesByYear).sort((a, b) => b - a);
 
-            // Create accordion for each year
-            years.forEach(year => {
-              const yearEntries = entriesByYear[year];
-              const yearAccordion = document.createElement('div');
-              yearAccordion.className = 'col-12 mb-4';
-              yearAccordion.innerHTML = `
+              // Create accordion for each year
+              years.forEach((year) => {
+                const yearEntries = entriesByYear[year];
+                const yearAccordion = document.createElement("div");
+                yearAccordion.className = "col-12 mb-4";
+                yearAccordion.innerHTML = `
                 <div class="card">
                   <div class="card-header">
                     <h5 class="card-title mb-0">${year}</h5>
@@ -1678,7 +2167,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          ${yearEntries.map(entry => `
+                          ${yearEntries
+                            .map(
+                              (entry) => `
                             <tr>
                               <td>${entry.controlNumber}</td>
                               <td>${entry.type}</td>
@@ -1688,67 +2179,82 @@
                               <td>${entry.office}</td>
                               <td>${entry.subject}</td>
                               <td>${entry.endorsedTo}</td>
-                              <td>${entry.remarks || ''}</td>
+                              <td>${entry.remarks || ""}</td>
                               <td><span class="badge bg-secondary">Archived</span></td>
                               <td>
-                                <button class="btn btn-sm btn-info" onclick="viewArchivedEntry('${entry.key}')">
+                                <button class="btn btn-sm btn-info" onclick="viewArchivedEntry('${
+                                  entry.key
+                                }')">
                                   <i class="bi bi-eye"></i>
                                 </button>
-                                <button class="btn btn-sm btn-warning" onclick="restoreEntry('${entry.key}')">
+                                <button class="btn btn-sm btn-warning" onclick="restoreEntry('${
+                                  entry.key
+                                }')">
                                   <i class="bi bi-arrow-counterclockwise"></i>
                                 </button>
                               </td>
                             </tr>
-                          `).join('')}
+                          `
+                            )
+                            .join("")}
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               `;
-              archivedYearsContainer.appendChild(yearAccordion);
+                archivedYearsContainer.appendChild(yearAccordion);
 
-              // Initialize DataTable for this year's entries
-              $(`#archivedTable${year}`).DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                  'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                pageLength: 10,
-                order: [[3, 'desc']],
-                destroy: true,
-                language: {
-                  search: "Search entries:"
-                }
+                // Initialize DataTable for this year's entries
+                $(`#archivedTable${year}`).DataTable({
+                  dom: "Bfrtip",
+                  buttons: [
+                    { extend: 'copy', className: 'btn btn-sm' },
+                    { extend: 'csv', className: 'btn btn-sm' },
+                    { extend: 'excel', className: 'btn btn-sm' },
+                    { extend: 'pdf', className: 'btn btn-sm' },
+                    { extend: 'print', className: 'btn btn-sm' }
+                  ],
+                  pageLength: 10,
+                  order: [[3, "desc"]],
+                  destroy: true,
+                  language: {
+                    search: "Search entries:",
+                  },
+                });
               });
-            });
 
-            if (years.length === 0) {
-              archivedYearsContainer.innerHTML = `
+              if (years.length === 0) {
+                archivedYearsContainer.innerHTML = `
                 <div class="col-12 text-center">
                   <p class="text-muted">No archived entries found.</p>
                 </div>
               `;
+              }
             }
-          }
 
-          // Close loading state
-          Swal.close();
-        }).catch((error) => {
-          console.error('Error loading archived entries:', error);
-          Swal.close();
-          showErrorAlert('Error loading archived entries. Please try again.');
-        });
+            // Close loading state
+            Swal.close();
+          })
+          .catch((error) => {
+            console.error("Error loading archived entries:", error);
+            Swal.close();
+            showErrorAlert("Error loading archived entries. Please try again.");
+          });
       }
 
       // Function to view archived entry details
       function viewArchivedEntry(key) {
-        entriesRef.child(key).once('value', (snapshot) => {
+        entriesRef.child(key).once("value", (snapshot) => {
           const entry = snapshot.val();
           if (entry) {
             // Show entry details in a modal
-            const modal = new bootstrap.Modal(document.getElementById('viewArchivedModal'));
-            document.getElementById('viewArchivedModal').querySelector('.modal-body').innerHTML = `
+            const modal = new bootstrap.Modal(
+              document.getElementById("viewArchivedModal")
+            );
+            document
+              .getElementById("viewArchivedModal")
+              .querySelector(".modal-body").innerHTML = `
               <div class="row mb-3">
                 <div class="col-md-6">
                   <strong>Control Number:</strong> ${entry.controlNumber}
@@ -1759,7 +2265,9 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-6">
-                  <strong>Date Received:</strong> ${formatDate(entry.dateReceived)}
+                  <strong>Date Received:</strong> ${formatDate(
+                    entry.dateReceived
+                  )}
                 </div>
                 <div class="col-md-6">
                   <strong>Time Received:</strong> ${entry.timeReceived}
@@ -1780,7 +2288,7 @@
                 <strong>Endorsed To:</strong> ${entry.endorsedTo}
               </div>
               <div class="mb-3">
-                <strong>Remarks:</strong> ${entry.remarks || 'None'}
+                <strong>Remarks:</strong> ${entry.remarks || "None"}
               </div>
               <div class="mb-3">
                 <strong>Archived On:</strong> ${formatDate(entry.archivedAt)}
@@ -1794,34 +2302,36 @@
       // Function to handle navigation
       function handleNavigation(sectionId) {
         // Hide all sections
-        document.querySelectorAll('.main-content > div').forEach(section => {
-          section.classList.add('d-none');
+        document.querySelectorAll(".main-content > div").forEach((section) => {
+          section.classList.add("d-none");
         });
-        
+
         // Show selected section
-        document.getElementById(sectionId).classList.remove('d-none');
-        
+        document.getElementById(sectionId).classList.remove("d-none");
+
         // Update active state in sidebar
-        document.querySelectorAll('.nav-link').forEach(link => {
-          link.classList.remove('active');
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
         });
-        document.querySelector(`#${sectionId.replace('Section', 'Link')}`).classList.add('active');
-        
+        document
+          .querySelector(`#${sectionId.replace("Section", "Link")}`)
+          .classList.add("active");
+
         // Load section-specific data
-        switch(sectionId) {
-          case 'documentsSection':
+        switch (sectionId) {
+          case "documentsSection":
             loadDocuments();
             break;
-          case 'usersSection':
+          case "usersSection":
             loadUsers();
             break;
-          case 'archivesSection':
+          case "archivesSection":
             loadArchivedEntries();
             break;
-          case 'historySection':
+          case "historySection":
             loadHistory();
             break;
-          case 'profileSection':
+          case "profileSection":
             loadProfile();
             break;
           default:
@@ -1830,39 +2340,51 @@
       }
 
       // Add event listeners for navigation
-      document.getElementById('dashboardLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('dashboardSection');
-      });
+      document
+        .getElementById("dashboardLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("dashboardSection");
+        });
 
-      document.getElementById('documentsLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('documentsSection');
-      });
+      document
+        .getElementById("documentsLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("documentsSection");
+        });
 
-      document.getElementById('usersLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('usersSection');
-      });
+      document
+        .getElementById("usersLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("usersSection");
+        });
 
-      document.getElementById('archivesLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('archivesSection');
-      });
+      document
+        .getElementById("archivesLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("archivesSection");
+        });
 
-      document.getElementById('historyLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('historySection');
-      });
+      document
+        .getElementById("historyLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("historySection");
+        });
 
-      document.getElementById('profileLink').addEventListener('click', function(e) {
-        e.preventDefault();
-        handleNavigation('profileSection');
-      });
+      document
+        .getElementById("profileLink")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          handleNavigation("profileSection");
+        });
 
       // Function to load documents
       function loadDocuments() {
-        entriesRef.once('value', (snapshot) => {
+        entriesRef.once("value", (snapshot) => {
           const entries = snapshot.val();
           const currentYear = new Date().getFullYear();
           const currentMonth = new Date().getMonth();
@@ -1873,14 +2395,14 @@
             complaints: 0,
             requests: 0,
             proposals: 0,
-            invitations: 0
+            invitations: 0,
           };
 
           const monthlyStats = {
             total: 0,
             dailyAverage: 0,
-            highestVolume: { month: '', count: 0 },
-            lowestVolume: { month: '', count: Infinity }
+            highestVolume: { month: "", count: 0 },
+            lowestVolume: { month: "", count: Infinity },
           };
 
           const monthlyData = Array(12).fill(0);
@@ -1894,7 +2416,7 @@
               // Yearly statistics
               if (entryYear === currentYear) {
                 yearlyStats.total++;
-                yearlyStats[entry.type.toLowerCase() + 's']++;
+                yearlyStats[entry.type.toLowerCase() + "s"]++;
 
                 // Monthly statistics
                 if (entryMonth === currentMonth) {
@@ -1905,73 +2427,107 @@
             });
 
             // Calculate monthly statistics
-            const nonZeroMonths = monthlyData.filter(count => count > 0);
-            monthlyStats.dailyAverage = nonZeroMonths.length > 0 ? 
-              Math.round(nonZeroMonths.reduce((a, b) => a + b, 0) / nonZeroMonths.length) : 0;
+            const nonZeroMonths = monthlyData.filter((count) => count > 0);
+            monthlyStats.dailyAverage =
+              nonZeroMonths.length > 0
+                ? Math.round(
+                    nonZeroMonths.reduce((a, b) => a + b, 0) /
+                      nonZeroMonths.length
+                  )
+                : 0;
 
             monthlyData.forEach((count, month) => {
               if (count > monthlyStats.highestVolume.count) {
                 monthlyStats.highestVolume = {
-                  month: new Date(2000, month).toLocaleString('default', { month: 'long' }),
-                  count: count
+                  month: new Date(2000, month).toLocaleString("default", {
+                    month: "long",
+                  }),
+                  count: count,
                 };
               }
               if (count < monthlyStats.lowestVolume.count && count > 0) {
                 monthlyStats.lowestVolume = {
-                  month: new Date(2000, month).toLocaleString('default', { month: 'long' }),
-                  count: count
+                  month: new Date(2000, month).toLocaleString("default", {
+                    month: "long",
+                  }),
+                  count: count,
                 };
               }
             });
           }
 
           // Update yearly statistics
-          document.getElementById('yearlyTotal').textContent = yearlyStats.total;
-          document.getElementById('yearlyComplaints').textContent = yearlyStats.complaints;
-          document.getElementById('yearlyRequests').textContent = yearlyStats.requests;
-          document.getElementById('yearlyProposals').textContent = yearlyStats.proposals;
-          document.getElementById('yearlyInvitations').textContent = yearlyStats.invitations;
+          document.getElementById("yearlyTotal").textContent =
+            yearlyStats.total;
+          document.getElementById("yearlyComplaints").textContent =
+            yearlyStats.complaints;
+          document.getElementById("yearlyRequests").textContent =
+            yearlyStats.requests;
+          document.getElementById("yearlyProposals").textContent =
+            yearlyStats.proposals;
+          document.getElementById("yearlyInvitations").textContent =
+            yearlyStats.invitations;
 
           // Update monthly statistics
-          document.getElementById('monthlyTotal').textContent = monthlyStats.total;
-          document.getElementById('avgDailyLetters').textContent = monthlyStats.dailyAverage;
-          document.getElementById('highestVolumeMonth').textContent = 
-            `${monthlyStats.highestVolume.month} (${monthlyStats.highestVolume.count})`;
-          document.getElementById('lowestVolumeMonth').textContent = 
-            `${monthlyStats.lowestVolume.month} (${monthlyStats.lowestVolume.count})`;
+          document.getElementById("monthlyTotal").textContent =
+            monthlyStats.total;
+          document.getElementById("avgDailyLetters").textContent =
+            monthlyStats.dailyAverage;
+          document.getElementById(
+            "highestVolumeMonth"
+          ).textContent = `${monthlyStats.highestVolume.month} (${monthlyStats.highestVolume.count})`;
+          document.getElementById(
+            "lowestVolumeMonth"
+          ).textContent = `${monthlyStats.lowestVolume.month} (${monthlyStats.lowestVolume.count})`;
 
           // Create monthly letters chart
-          const monthlyCtx = document.getElementById('monthlyLettersChart').getContext('2d');
+          const monthlyCtx = document
+            .getElementById("monthlyLettersChart")
+            .getContext("2d");
           new Chart(monthlyCtx, {
-            type: 'line',
+            type: "line",
             data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 
-                      'July', 'August', 'September', 'October', 'November', 'December'],
-              datasets: [{
-                label: 'Letters Received',
-                data: monthlyData,
-                borderColor: '#2e7d32',
-                backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                tension: 0.4,
-                fill: true
-              }]
+              labels: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+              ],
+              datasets: [
+                {
+                  label: "Letters Received",
+                  data: monthlyData,
+                  borderColor: "#2e7d32",
+                  backgroundColor: "rgba(46, 125, 50, 0.1)",
+                  tension: 0.4,
+                  fill: true,
+                },
+              ],
             },
             options: {
               responsive: true,
               plugins: {
                 legend: {
-                  display: false
-                }
+                  display: false,
+                },
               },
               scales: {
                 y: {
                   beginAtZero: true,
                   ticks: {
-                    stepSize: 1
-                  }
-                }
-              }
-            }
+                    stepSize: 1,
+                  },
+                },
+              },
+            },
           });
         });
       }
@@ -1979,30 +2535,33 @@
       // Function to load users
       function loadUsers() {
         // Check if DataTable is already initialized
-        if ($.fn.DataTable.isDataTable('#usersTable')) {
-          $('#usersTable').DataTable().destroy();
+        if ($.fn.DataTable.isDataTable("#usersTable")) {
+          $("#usersTable").DataTable().destroy();
         }
 
         // Show loading state
         Swal.fire({
-          title: 'Loading Users',
-          text: 'Please wait...',
+          title: "Loading Users",
+          text: "Please wait...",
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
-          }
+          },
         });
 
-        database.ref('users').once('value', (snapshot) => {
-          const users = snapshot.val();
-          const tbody = document.querySelector('#usersTable tbody');
-          tbody.innerHTML = '';
+        database
+          .ref("users")
+          .once("value", (snapshot) => {
+            const users = snapshot.val();
+            const tbody = document.querySelector("#usersTable tbody");
+            tbody.innerHTML = "";
 
-          if (users) {
-            Object.entries(users).forEach(([key, user]) => {
-              if (key !== 'admin') { // Skip the admin user
-                const row = document.createElement('tr');
-                row.innerHTML = `
+            if (users) {
+              Object.entries(users).forEach(([key, user]) => {
+                if (key !== "admin") {
+                  // Skip the admin user
+                  const row = document.createElement("tr");
+                  row.innerHTML = `
                   <td>${user.firstName} ${user.lastName}</td>
                   <td>${user.email}</td>
                   <td>${user.role}</td>
@@ -2016,127 +2575,145 @@
                     </button>
                   </td>
                 `;
-                tbody.appendChild(row);
-              }
-            });
-          }
-
-          // Initialize DataTable
-          $('#usersTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
-            pageLength: 10,
-            order: [[0, 'asc']],
-            destroy: true,
-            language: {
-              search: "Search users:"
+                  tbody.appendChild(row);
+                }
+              });
             }
-          });
 
-          // Close loading state
-          Swal.close();
-        }).catch((error) => {
-          console.error('Error loading users:', error);
-          Swal.close();
-          showErrorAlert('Error loading users. Please try again.');
-        });
+            // Initialize DataTable
+            $("#usersTable").DataTable({
+              dom: "Bfrtip",
+              buttons: [
+                { extend: 'copy', className: 'btn btn-sm' },
+                { extend: 'csv', className: 'btn btn-sm' },
+                { extend: 'excel', className: 'btn btn-sm' },
+                { extend: 'pdf', className: 'btn btn-sm' },
+                { extend: 'print', className: 'btn btn-sm' }
+              ],
+              pageLength: 10,
+              order: [[0, "asc"]],
+              destroy: true,
+              language: {
+                search: "Search users:",
+              },
+            });
+
+            // Close loading state
+            Swal.close();
+          })
+          .catch((error) => {
+            console.error("Error loading users:", error);
+            Swal.close();
+            showErrorAlert("Error loading users. Please try again.");
+          });
       }
 
       // Function to load history
       function loadHistory() {
         // Check if DataTable is already initialized
-        if ($.fn.DataTable.isDataTable('#historyTable')) {
-          $('#historyTable').DataTable().destroy();
+        if ($.fn.DataTable.isDataTable("#historyTable")) {
+          $("#historyTable").DataTable().destroy();
         }
 
         // Show loading state
         Swal.fire({
-          title: 'Loading History',
-          text: 'Please wait...',
+          title: "Loading History",
+          text: "Please wait...",
           allowOutsideClick: false,
           didOpen: () => {
             Swal.showLoading();
-          }
+          },
         });
 
-        database.ref('logs').on('value', (snapshot) => {
-          const logs = snapshot.val();
-          const tbody = document.querySelector('#historyTable tbody');
-          tbody.innerHTML = '';
+        database
+          .ref("logs")
+          .on("value", (snapshot) => {
+            const logs = snapshot.val();
+            const tbody = document.querySelector("#historyTable tbody");
+            tbody.innerHTML = "";
 
-          if (logs) {
-            Object.entries(logs).forEach(([key, log]) => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
+            if (logs) {
+              Object.entries(logs).forEach(([key, log]) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
                 <td>${formatDate(log.timestamp)}</td>
                 <td>${log.user}</td>
                 <td>${log.action}</td>
                 <td>${log.details}</td>
-                <td>${log.controlNumber || '-'}</td>
-                <td>${log.ipAddress || '-'}</td>
-                <td class="small text-muted">${log.userAgent || '-'}</td>
+                <td>${log.controlNumber || "-"}</td>
+                <td>${log.ipAddress || "-"}</td>
+                <td class="small text-muted">${log.userAgent || "-"}</td>
               `;
-              tbody.appendChild(row);
+                tbody.appendChild(row);
+              });
+            }
+
+            // Initialize DataTable
+            $("#historyTable").DataTable({
+              dom: "Bfrtip",
+              buttons: [
+                { extend: 'copy', className: 'btn btn-sm' },
+                { extend: 'csv', className: 'btn btn-sm' },
+                { extend: 'excel', className: 'btn btn-sm' },
+                { extend: 'pdf', className: 'btn btn-sm' },
+                { extend: 'print', className: 'btn btn-sm' }
+              ],
+              pageLength: 10,
+              order: [[0, "desc"]],
+              destroy: true,
+              language: {
+                search: "Search history:",
+              },
+              columnDefs: [
+                { width: "15%", targets: 0 },
+                { width: "10%", targets: 1 },
+                { width: "10%", targets: 2 },
+                { width: "25%", targets: 3 },
+                { width: "10%", targets: 4 },
+                { width: "15%", targets: 5 },
+                { width: "15%", targets: 6 },
+              ],
             });
-          }
 
-          // Initialize DataTable
-          $('#historyTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-              'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
-            pageLength: 10,
-            order: [[0, 'desc']],
-            destroy: true,
-            language: {
-              search: "Search history:"
-            },
-            columnDefs: [
-              { width: '15%', targets: 0 },
-              { width: '10%', targets: 1 },
-              { width: '10%', targets: 2 },
-              { width: '25%', targets: 3 },
-              { width: '10%', targets: 4 },
-              { width: '15%', targets: 5 },
-              { width: '15%', targets: 6 }
-            ]
+            // Close loading state
+            Swal.close();
+          })
+          .catch((error) => {
+            console.error("Error loading history:", error);
+            Swal.close();
+            showErrorAlert("Error loading history. Please try again.");
           });
-
-          // Close loading state
-          Swal.close();
-        }).catch((error) => {
-          console.error('Error loading history:', error);
-          Swal.close();
-          showErrorAlert('Error loading history. Please try again.');
-        });
       }
 
       // Function to view audit log details
       function viewAuditLog(key, log) {
-        const modal = new bootstrap.Modal(document.getElementById('viewAuditLogModal'));
-        
+        const modal = new bootstrap.Modal(
+          document.getElementById("viewAuditLogModal")
+        );
+
         // Format timestamp
         const timestamp = new Date(log.timestamp);
-        const formattedTimestamp = timestamp.toLocaleString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
+        const formattedTimestamp = timestamp.toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
         });
 
         // Update modal content
-        document.getElementById('auditTimestamp').textContent = formattedTimestamp;
-        document.getElementById('auditUser').textContent = log.user;
-        document.getElementById('auditAction').textContent = log.action;
-        document.getElementById('auditControlNumber').textContent = log.controlNumber || '-';
-        document.getElementById('auditDetails').textContent = log.details;
-        document.getElementById('auditIP').textContent = log.ipAddress || 'Not available';
-        document.getElementById('auditUserAgent').textContent = log.userAgent || 'Not available';
+        document.getElementById("auditTimestamp").textContent =
+          formattedTimestamp;
+        document.getElementById("auditUser").textContent = log.user;
+        document.getElementById("auditAction").textContent = log.action;
+        document.getElementById("auditControlNumber").textContent =
+          log.controlNumber || "-";
+        document.getElementById("auditDetails").textContent = log.details;
+        document.getElementById("auditIP").textContent =
+          log.ipAddress || "Not available";
+        document.getElementById("auditUserAgent").textContent =
+          log.userAgent || "Not available";
 
         // Show modal
         modal.show();
@@ -2148,44 +2725,51 @@
       }
 
       // Initialize the dashboard on page load
-      document.addEventListener('DOMContentLoaded', function() {
-        handleNavigation('dashboardSection');
+      document.addEventListener("DOMContentLoaded", function () {
+        handleNavigation("dashboardSection");
       });
 
       // Add event listener for the Archive All button
-      document.addEventListener('DOMContentLoaded', function() {
-        const archiveAllBtn = document.getElementById('archiveAllBtn');
+      document.addEventListener("DOMContentLoaded", function () {
+        const archiveAllBtn = document.getElementById("archiveAllBtn");
         if (archiveAllBtn) {
-          archiveAllBtn.addEventListener('click', archiveAllEntries);
+          archiveAllBtn.addEventListener("click", archiveAllEntries);
         }
       });
 
       // Function to handle sign out
       function signOut() {
-        showConfirmDialog('Sign Out', 'Are you sure you want to sign out?', 'Yes, sign out')
-          .then((result) => {
-            if (result.isConfirmed) {
-              // Sign out from Firebase
-              firebase.auth().signOut().then(() => {
+        showConfirmDialog(
+          "Sign Out",
+          "Are you sure you want to sign out?",
+          "Yes, sign out"
+        ).then((result) => {
+          if (result.isConfirmed) {
+            // Sign out from Firebase
+            firebase
+              .auth()
+              .signOut()
+              .then(() => {
                 // Clear any session data
                 sessionStorage.clear();
                 localStorage.clear();
-                
+
                 // Redirect to login page
-                window.location.href = '../auth/login.html';
-              }).catch((error) => {
-                console.error('Error signing out:', error);
-                showErrorAlert('Error signing out. Please try again.');
+                window.location.href = "../auth/login.html";
+              })
+              .catch((error) => {
+                console.error("Error signing out:", error);
+                showErrorAlert("Error signing out. Please try again.");
               });
-            }
-          });
+          }
+        });
       }
 
       // Check authentication state
       firebase.auth().onAuthStateChanged((user) => {
-        if (!user && window.location.pathname.includes('admin/index.html')) {
+        if (!user && window.location.pathname.includes("admin/index.html")) {
           // If no user is signed in and we're on the admin page, redirect to login
-          window.location.href = '../auth/login.html';
+          window.location.href = "../auth/login.html";
         }
       });
     </script>
